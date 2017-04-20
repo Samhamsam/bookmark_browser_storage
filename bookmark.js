@@ -92,37 +92,13 @@ function allStorage() {
 }
 
 function setItem(place, id, bookmark) {
-  pathArray = bookmark.split( '/' );
-  protocol = pathArray[0];
-  host = pathArray[2];
-  url = protocol + '//' + host;
-
-  favicon = url + "/favicon.ico"
-  checkImage(place, id, bookmark,favicon);
+  $(place).append('<span>' +" "+ id + ': </span>');
+  $(place).append('<a target="_blank" href="' + bookmark + '">' + bookmark + '</a><br>');
 }
 
 function clearInput(){
   $('#name').val('');
   $('#bookmark').val('');
 }
-
-function checkImage(place, id, bookmark,url){
-    test = "";
-    var s = document.createElement("IMG");
-    s.src = url
-    s.onerror = function(){
-      finalE(place, id, bookmark,"404.png");
-    }
-    s.onload = function(){
-      finalE(place, id, bookmark,url);
-    }
-}
-
-function finalE(place, id, bookmark,favicon){
-  $(place).append('<img id="favicon" src="'+favicon+'"><span>' +" "+ id + ': </span>');
-  $(place).append('<a target="_blank" href="' + bookmark + '">' + bookmark + '</a><br>');
-}
-
-
 
 })
